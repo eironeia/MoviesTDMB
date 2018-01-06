@@ -23,7 +23,7 @@ struct PopularFilmsScene {
         }
         
         struct ViewModel {
-            var displayedFilms: [PopularFilmsList.DisplayedFilm]
+            var displayFilms: [PopularFilmsList.DisplayedFilm]
         }
         
         struct DisplayedFilm {

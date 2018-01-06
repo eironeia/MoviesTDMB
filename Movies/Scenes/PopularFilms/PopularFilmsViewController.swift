@@ -10,12 +10,13 @@
 
 import UIKit
 
+
 protocol PopularFilmsViewControllerInput {
-    
+    func displayFilms(viewModel: PopularFilmsScene.PopularFilmsList.ViewModel)
 }
 
 protocol PopularFilmsViewControllerOutput {
-    
+    func getFilms(request: PopularFilmsScene.PopularFilmsList.Request)
 }
 
 class PopularFilmsViewController: UIViewController, PopularFilmsViewControllerInput {
@@ -25,16 +26,19 @@ class PopularFilmsViewController: UIViewController, PopularFilmsViewControllerIn
     
     // MARK: Object lifecycle
     @IBOutlet weak var popularFilmsTableView: UITableView!
+    @IBOutlet weak var popularFilmsSearchBar: UISearchBar!
     
     struct cellIdentifiers {
         static let popularFilmCell = "popularFilmCell"
     }
     
-    static let film1 = PopularFilmsScene.PopularFilmsList.DisplayedFilm.init(title: "Star Wars: The Last Jedi", year: "2017", overview: "Rey develops her newly discovered abilities with the guidance of Luke Skywalker, who is unsettled by the strength of her powers. Meanwhile, the Resistance prepares to do battle with the First Order.", pictureURL: "http://image.tmdb.org/t/p/w185/xGWVjewoXnJhvxKW619cMzppJDQ.jpg")
-    static let film2 = PopularFilmsScene.PopularFilmsList.DisplayedFilm.init(title: "Blade Runner 2049", year: "2017", overview: "Thirty years after the events of the first film, a new blade runner, LAPD Officer K, unearths a long-buried secret that has the potential to plunge what's left of society into chaos. K's discovery leads him on a quest to find Rick Deckard, a former LAPD blade runner who has been missing for 30 years.", pictureURL: "http://image.tmdb.org/t/p/w185/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg")
-    static let film3 = PopularFilmsScene.PopularFilmsList.DisplayedFilm.init(title: "Blade", year: "2017", overview: "Thirty years after the events of the first film.", pictureURL: "http://image.tmdb.org/t/p/w185/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg")
-    var displayedPopularFilms: [PopularFilmsScene.PopularFilmsList.DisplayedFilm] = [film1, film2, film3]
+    var page: Int = 1
     
+//    static let film1 = PopularFilmsScene.PopularFilmsList.DisplayedFilm.init(title: "Star Wars: The Last Jedi", year: "2017", overview: "Rey develops her newly discovered abilities with the guidance of Luke Skywalker, who is unsettled by the strength of her powers. Meanwhile, the Resistance prepares to do battle with the First Order.", pictureURL: "http://image.tmdb.org/t/p/w185/xGWVjewoXnJhvxKW619cMzppJDQ.jpg")
+//    static let film2 = PopularFilmsScene.PopularFilmsList.DisplayedFilm.init(title: "Blade Runner 2049", year: "2017", overview: "Thirty years after the events of the first film, a new blade runner, LAPD Officer K, unearths a long-buried secret that has the potential to plunge what's left of society into chaos. K's discovery leads him on a quest to find Rick Deckard, a former LAPD blade runner who has been missing for 30 years.", pictureURL: "http://image.tmdb.org/t/p/w185/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg")
+//    static let film3 = PopularFilmsScene.PopularFilmsList.DisplayedFilm.init(title: "Blade", year: "2017", overview: "Thirty years after the events of the first film.", pictureURL: "http://image.tmdb.org/t/p/w185/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg")
+    var filteredDisplayFilms: [PopularFilmsScene.PopularFilmsList.DisplayedFilm] = []
+    var displayFilms: [PopularFilmsScene.PopularFilmsList.DisplayedFilm] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,18 +47,36 @@ class PopularFilmsViewController: UIViewController, PopularFilmsViewControllerIn
     
     // MARK: View lifecycle
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableViewOnLoad()
-        
-        
+        self.requestGetPopularFilms()
     }
     
     // MARK: Requests
     
+    func requestGetPopularFilms() {
+        let request = PopularFilmsScene.PopularFilmsList.Request(page: self.page)
+        output?.getFilms(request: request)
+    }
     
     // MARK: Display logic
     
+    func displayFilms(viewModel: PopularFilmsScene.PopularFilmsList.ViewModel) {
+        if self.page == 1 {
+            self.displayFilms = viewModel.displayFilms
+        }
+        else {
+            self.displayFilms += viewModel.displayFilms
+        }
+        self.filteredDisplayFilms = self.displayFilms
+        self.popularFilmsTableView.reloadData() //Take care with that case because maybe don't have to reload all the time
+        
+    }
     // MARK: UI Events
     
 }

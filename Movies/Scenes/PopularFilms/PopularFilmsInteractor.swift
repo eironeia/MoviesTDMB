@@ -9,11 +9,11 @@
 //  https://github.com/HelmMobile/clean-swift-templates
 
 protocol PopularFilmsInteractorInput {
-    
+    func getFilms(request: PopularFilmsScene.PopularFilmsList.Request)
 }
 
 protocol PopularFilmsInteractorOutput {
-    
+    func presentFilms(response: PopularFilmsScene.PopularFilmsList.Response)
 }
 
 protocol PopularFilmsDataSource {
@@ -27,8 +27,19 @@ protocol PopularFilmsDataDestination {
 class PopularFilmsInteractor: PopularFilmsInteractorInput, PopularFilmsDataSource, PopularFilmsDataDestination {
     
     var output: PopularFilmsInteractorOutput?
+    var tmdbAPIStore = TmdbAPIStore()
     
     // MARK: Business logic
-    
+    func getFilms(request: PopularFilmsScene.PopularFilmsList.Request) {
+        tmdbAPIStore.getPopularFilmsDesc(page: request.page) { (result) in
+            switch result {
+            case .success(result: let films):
+                let response = PopularFilmsScene.PopularFilmsList.Response(films: films)
+                self.output?.presentFilms(response: response)
+            case .failure(error: let error):
+                print(error)
+            }
+        }
+    }
 
 }

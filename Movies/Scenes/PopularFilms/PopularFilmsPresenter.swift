@@ -9,17 +9,25 @@
 //  https://github.com/HelmMobile/clean-swift-templates
 
 protocol PopularFilmsPresenterInput {
-    
+    func presentFilms(response: PopularFilmsScene.PopularFilmsList.Response)
 }
 
 protocol PopularFilmsPresenterOutput: class {
-    
+    func displayFilms(viewModel: PopularFilmsScene.PopularFilmsList.ViewModel)
 }
 
 class PopularFilmsPresenter: PopularFilmsPresenterInput {
     
     weak var output: PopularFilmsPresenterOutput?
     
-    // MARK: Presentation logic
-    
+    func presentFilms(response: PopularFilmsScene.PopularFilmsList.Response) {
+        let films = response.films
+        var displayFilms:[PopularFilmsScene.PopularFilmsList.DisplayedFilm] = []
+        for film in films {
+            let displayFilm = PopularFilmsScene.PopularFilmsList.DisplayedFilm(title: film.title, year: film.year, overview: film.overview, pictureURL: film.pictureURL)
+            displayFilms.append(displayFilm)
+        }
+        let viewModel = PopularFilmsScene.PopularFilmsList.ViewModel(displayFilms: displayFilms)
+        output?.displayFilms(viewModel: viewModel)
+    }
 }

@@ -24,8 +24,8 @@
 		9C3B2DED1FFFD4480031AEC1 /* ResponseSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B2DEC1FFFD4480031AEC1 /* ResponseSerializable.swift */; };
 		9C3B2DFF2000EE300031AEC1 /* PopularFilmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B2DFE2000EE300031AEC1 /* PopularFilmCell.swift */; };
 		9C3B2E02200117750031AEC1 /* TableView+PopularFilmsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3B2E01200117750031AEC1 /* TableView+PopularFilmsVC.swift */; };
+		9C86C90E200151020098C21C /* SearchBar+PopularFilmsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C86C90D200151020098C21C /* SearchBar+PopularFilmsVC.swift */; };
 		9CF34ECB1FFD55CC0025C19C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF34ECA1FFD55CC0025C19C /* AppDelegate.swift */; };
-		9CF34ECD1FFD55CC0025C19C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF34ECC1FFD55CC0025C19C /* ViewController.swift */; };
 		9CF34ED01FFD55CC0025C19C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CF34ECE1FFD55CC0025C19C /* Main.storyboard */; };
 		9CF34ED21FFD55CC0025C19C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CF34ED11FFD55CC0025C19C /* Assets.xcassets */; };
 		9CF34ED51FFD55CC0025C19C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CF34ED31FFD55CC0025C19C /* LaunchScreen.storyboard */; };
@@ -73,9 +73,9 @@
 		9C3B2DEC1FFFD4480031AEC1 /* ResponseSerializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseSerializable.swift; sourceTree = "<group>"; };
 		9C3B2DFE2000EE300031AEC1 /* PopularFilmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularFilmCell.swift; sourceTree = "<group>"; };
 		9C3B2E01200117750031AEC1 /* TableView+PopularFilmsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+PopularFilmsVC.swift"; sourceTree = "<group>"; };
+		9C86C90D200151020098C21C /* SearchBar+PopularFilmsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchBar+PopularFilmsVC.swift"; sourceTree = "<group>"; };
 		9CF34EC71FFD55CC0025C19C /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CF34ECA1FFD55CC0025C19C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9CF34ECC1FFD55CC0025C19C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9CF34ECF1FFD55CC0025C19C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9CF34ED11FFD55CC0025C19C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CF34ED41FFD55CC0025C19C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -236,8 +236,18 @@
 			isa = PBXGroup;
 			children = (
 				9C3B2E01200117750031AEC1 /* TableView+PopularFilmsVC.swift */,
+				9C86C90D200151020098C21C /* SearchBar+PopularFilmsVC.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9C86C90F200158640098C21C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9C3B2DE61FFFD2690031AEC1 /* Mappers */,
+				9C3B2DDF1FFD66E30031AEC1 /* Stores */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		9CF34EBE1FFD55CB0025C19C = {
@@ -265,13 +275,11 @@
 		9CF34EC91FFD55CC0025C19C /* Movies */ = {
 			isa = PBXGroup;
 			children = (
+				9C86C90F200158640098C21C /* Services */,
 				9C3B2DE31FFFD04A0031AEC1 /* Models */,
-				9C3B2DDF1FFD66E30031AEC1 /* Stores */,
 				9C3B2DEF2000E8940031AEC1 /* Scenes */,
-				9C3B2DE61FFFD2690031AEC1 /* Mappers */,
 				9C3B2DDA1FFD62980031AEC1 /* Constants */,
 				9CF34ECA1FFD55CC0025C19C /* AppDelegate.swift */,
-				9CF34ECC1FFD55CC0025C19C /* ViewController.swift */,
 				9CF34ECE1FFD55CC0025C19C /* Main.storyboard */,
 				9CF34ED11FFD55CC0025C19C /* Assets.xcassets */,
 				9CF34ED31FFD55CC0025C19C /* LaunchScreen.storyboard */,
@@ -599,8 +607,8 @@
 				9C36190D20011A91000D4E39 /* PopularFilmsModels.swift in Sources */,
 				9C3B2DFF2000EE300031AEC1 /* PopularFilmCell.swift in Sources */,
 				9C36190B20011A91000D4E39 /* PopularFilmsPresenter.swift in Sources */,
+				9C86C90E200151020098C21C /* SearchBar+PopularFilmsVC.swift in Sources */,
 				9C36190C20011A91000D4E39 /* PopularFilmsRouter.swift in Sources */,
-				9CF34ECD1FFD55CC0025C19C /* ViewController.swift in Sources */,
 				9C3B2DE51FFFD0650031AEC1 /* Film.swift in Sources */,
 				9C3B2DE21FFD67E10031AEC1 /* TmdbAPIStore.swift in Sources */,
 				9C3B2DDC1FFD62C40031AEC1 /* URLs.swift in Sources */,

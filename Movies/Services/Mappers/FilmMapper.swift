@@ -36,13 +36,10 @@ extension Film: ResponseObjectSerializable, ResponseCollectionSerializable {
             let calendar = Calendar.current
             year = "\(calendar.component(.year, from: date))"
             
-            print("YEAR: \(year), releaseDate: \(releaseDate)")
+            
         }
         
-        var pictureURL = posterPath
-        pictureURL.remove(at: pictureURL.startIndex) //due to it's "\/imageID.jpg, even there is no problem is cleaner"
-        
-        return Film(title: title, year: year, overview: overview, pictureURL: "\(ConstantsURLs.TMDB.filmPicture)\(pictureURL)")
+        return Film(title: title, year: year, overview: overview, pictureURL: "\(ConstantsURLs.TMDB.filmPicture)\(posterPath)")
     }
     
     static func collection(fromJSON json: JSON) -> AnyObject? {

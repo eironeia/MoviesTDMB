@@ -14,6 +14,9 @@ extension PopularFilmsViewController: UITableViewDelegate, UITableViewDataSource
     func configureTableViewOnLoad() {
         popularFilmsTableView.register(UINib(nibName: "PopularFilmCell", bundle: Bundle.main), forCellReuseIdentifier: cellIdentifiers.popularFilmCell)
         popularFilmsTableView.rowHeight = UITableViewAutomaticDimension
+        popularFilmsTableView.keyboardDismissMode = .onDrag
+        
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -21,12 +24,12 @@ extension PopularFilmsViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.displayedPopularFilms.count
+        return self.filteredDisplayFilms.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
      
-        let displayedFilm = displayedPopularFilms[indexPath.row]
+        let displayedFilm = filteredDisplayFilms[indexPath.row]
         
         if let popularFilmCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifiers.popularFilmCell) as? PopularFilmCell {
             popularFilmCell.set(film: displayedFilm)
@@ -36,5 +39,8 @@ extension PopularFilmsViewController: UITableViewDelegate, UITableViewDataSource
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
 }
