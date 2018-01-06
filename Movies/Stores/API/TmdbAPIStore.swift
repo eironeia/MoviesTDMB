@@ -12,7 +12,9 @@ import SwiftyJSON
 
 class TmdbAPIStore {
     
-    func getPopularFilmsDesc(page: Int, completion: (_ films: [Film]) -> Void) {
+    typealias PopularFilmsDescCompletion = ([Film]?, String?) -> Void //(Films, error)
+    
+    func getPopularFilmsDesc(page: Int, completion: @escaping PopularFilmsDescCompletion) {
         Alamofire.request(ConstantsURLs.TMDB.popularFilmsDesc).responseJSON { response in
             if let result = response.result.value {
                 let filmsDictionary = result as! NSDictionary
@@ -20,16 +22,12 @@ class TmdbAPIStore {
                 let films = Film.collection(fromJSON: filmsJSON) as? [Film]
                     print(films)
                 //                print(JSON)
+                completion(films, nil)
             }
             else {
                 print("ERROR: Getting TMDB popular films in desc order")
+                completion(nil, "Alamofire error")
             }
-        }
-    }
-    
-    func h() {
-        getPopularFilmsDesc(page: 1) { (films) in
-            <#code#>
         }
     }
 }

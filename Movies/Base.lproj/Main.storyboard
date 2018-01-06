@@ -10,19 +10,39 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Popular Films View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="popularFilmsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="PopularFilmsViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X6V-I4-Nst">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Jzy-w9-xfs"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Hr1-rl-sWu"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="X6V-I4-Nst" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="8Bl-fh-wRh"/>
+                            <constraint firstItem="X6V-I4-Nst" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ayf-9A-sAM"/>
+                            <constraint firstItem="X6V-I4-Nst" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="pla-4G-EoX"/>
+                            <constraint firstItem="X6V-I4-Nst" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xGe-Om-FvQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="popularFilmsTableView" destination="X6V-I4-Nst" id="c69-Qq-5m5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-95.200000000000003" y="114.69265367316342"/>
         </scene>
     </scenes>
 </document>
