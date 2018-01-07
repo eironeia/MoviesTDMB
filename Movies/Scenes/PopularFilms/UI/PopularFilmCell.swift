@@ -24,9 +24,7 @@ class PopularFilmCell: UITableViewCell {
         let pictureURL = URL(string: film.pictureURL)
         self.filmPictureImageView.kf.setImage(with: pictureURL)
         self.filmView.layer.cornerRadius = 4
-        self.filmPictureImageView.layer.cornerRadius = 4
-        self.filmPictureImageView.layer.masksToBounds = true
-        
+
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .right
 

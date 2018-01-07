@@ -25,18 +25,17 @@ class PopularFilmsViewController: UIViewController, PopularFilmsViewControllerIn
     var router: PopularFilmsRouter?
     
     // MARK: Object lifecycle
-    @IBOutlet weak var popularFilmsTableView: UITableView!
-    @IBOutlet weak var popularFilmsSearchBar: UISearchBar!
     
     struct cellIdentifiers {
         static let popularFilmCell = "popularFilmCell"
     }
     
-    var page: Int = 1
+    @IBOutlet weak var popularFilmsTableView: UITableView!
+    @IBOutlet weak var popularFilmsSearchBar: UISearchBar!
+    @IBOutlet weak var loaderIndicatorView: UIActivityIndicatorView!
     
-//    static let film1 = PopularFilmsScene.PopularFilmsList.DisplayedFilm.init(title: "Star Wars: The Last Jedi", year: "2017", overview: "Rey develops her newly discovered abilities with the guidance of Luke Skywalker, who is unsettled by the strength of her powers. Meanwhile, the Resistance prepares to do battle with the First Order.", pictureURL: "http://image.tmdb.org/t/p/w185/xGWVjewoXnJhvxKW619cMzppJDQ.jpg")
-//    static let film2 = PopularFilmsScene.PopularFilmsList.DisplayedFilm.init(title: "Blade Runner 2049", year: "2017", overview: "Thirty years after the events of the first film, a new blade runner, LAPD Officer K, unearths a long-buried secret that has the potential to plunge what's left of society into chaos. K's discovery leads him on a quest to find Rick Deckard, a former LAPD blade runner who has been missing for 30 years.", pictureURL: "http://image.tmdb.org/t/p/w185/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg")
-//    static let film3 = PopularFilmsScene.PopularFilmsList.DisplayedFilm.init(title: "Blade", year: "2017", overview: "Thirty years after the events of the first film.", pictureURL: "http://image.tmdb.org/t/p/w185/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg")
+    var page: Int = 0
+    
     var filteredDisplayFilms: [PopularFilmsScene.PopularFilmsList.DisplayedFilm] = []
     var displayFilms: [PopularFilmsScene.PopularFilmsList.DisplayedFilm] = []
     
@@ -60,6 +59,8 @@ class PopularFilmsViewController: UIViewController, PopularFilmsViewControllerIn
     // MARK: Requests
     
     func requestGetPopularFilms() {
+        self.loaderIndicatorView.startAnimating()
+        self.page += 1
         let request = PopularFilmsScene.PopularFilmsList.Request(page: self.page)
         output?.getFilms(request: request)
     }
@@ -67,6 +68,16 @@ class PopularFilmsViewController: UIViewController, PopularFilmsViewControllerIn
     // MARK: Display logic
     
     func displayFilms(viewModel: PopularFilmsScene.PopularFilmsList.ViewModel) {
+        
+        self.loaderIndicatorView.stopAnimating()
+        
+        if let error = viewModel.tmdbError {
+            let alert = UIAlertController(title: error.title, message: error.description, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Accept", style: .cancel, handler: { action in
+                }))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
         if self.page == 1 {
             self.displayFilms = viewModel.displayFilms
         }
@@ -74,9 +85,9 @@ class PopularFilmsViewController: UIViewController, PopularFilmsViewControllerIn
             self.displayFilms += viewModel.displayFilms
         }
         self.filteredDisplayFilms = self.displayFilms
-        self.popularFilmsTableView.reloadData() //Take care with that case because maybe don't have to reload all the time
-        
+        self.popularFilmsTableView.reloadData()
     }
+ 
     // MARK: UI Events
     
 }

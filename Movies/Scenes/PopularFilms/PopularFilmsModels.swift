@@ -12,6 +12,10 @@
 
 struct PopularFilmsScene {
     
+    struct DisplayError {
+        
+    }
+    
     struct PopularFilmsList {
         
         struct Request {
@@ -20,10 +24,12 @@ struct PopularFilmsScene {
         
         struct Response {
             var films: [Film]
+            var error: TmdbStoreError?
         }
         
         struct ViewModel {
             var displayFilms: [PopularFilmsList.DisplayedFilm]
+            var tmdbError: TmdbError?
         }
         
         struct DisplayedFilm {
@@ -31,6 +37,11 @@ struct PopularFilmsScene {
             var year: String
             var overview: String
             var pictureURL: String
+        }
+        
+        struct TmdbError {
+            var title: String
+            var description: String
         }
     }
     

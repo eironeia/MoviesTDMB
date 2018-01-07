@@ -14,9 +14,7 @@ extension PopularFilmsViewController: UITableViewDelegate, UITableViewDataSource
     func configureTableViewOnLoad() {
         popularFilmsTableView.register(UINib(nibName: "PopularFilmCell", bundle: Bundle.main), forCellReuseIdentifier: cellIdentifiers.popularFilmCell)
         popularFilmsTableView.rowHeight = UITableViewAutomaticDimension
-        popularFilmsTableView.keyboardDismissMode = .onDrag
-        
-        
+        popularFilmsTableView.keyboardDismissMode = .interactive
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -39,8 +37,24 @@ extension PopularFilmsViewController: UITableViewDelegate, UITableViewDataSource
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let searchBarText = self.popularFilmsSearchBar.text else {
+            if indexPath.row == (self.filteredDisplayFilms.count - 1) {
+                self.requestGetPopularFilms()
+            }
+            return
+        }
+        if indexPath.row == (self.filteredDisplayFilms.count - 1) && searchBarText.isEmpty {
+            self.requestGetPopularFilms()
+        }
+    }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.popularFilmsSearchBar.resignFirstResponder()
     }
     
 }

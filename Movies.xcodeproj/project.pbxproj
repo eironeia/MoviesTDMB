@@ -204,7 +204,6 @@
 		9C3B2DEF2000E8940031AEC1 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				9C3B2DFD2000E9780031AEC1 /* CustomCells */,
 				9C3B2DF02000E8A00031AEC1 /* PopularFilms */,
 			);
 			path = Scenes;
@@ -223,13 +222,6 @@
 				9C36190A20011A91000D4E39 /* PopularFilmsConfigurator.swift */,
 			);
 			path = PopularFilms;
-			sourceTree = "<group>";
-		};
-		9C3B2DFD2000E9780031AEC1 /* CustomCells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CustomCells;
 			sourceTree = "<group>";
 		};
 		9C3B2E002001175E0031AEC1 /* Extensions */ = {

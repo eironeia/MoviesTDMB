@@ -32,7 +32,7 @@ class TmdbAPIStore {
     typealias PopularFilmsDescCompletion = (TmdbStoreResult<[Film]>) -> Void
     
     func getPopularFilmsDesc(page: Int, completion: @escaping PopularFilmsDescCompletion) {
-        Alamofire.request(ConstantsURLs.TMDB.popularFilmsDesc).responseJSON { response in
+        Alamofire.request("\(ConstantsURLs.TMDB.popularFilmsDesc)&page=\(page)").responseJSON { response in
             if let result = response.result.value {
                 let filmsDictionary = result as! NSDictionary
                 let filmsJSON = JSON(filmsDictionary)

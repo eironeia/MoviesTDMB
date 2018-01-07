@@ -35,8 +35,6 @@ extension Film: ResponseObjectSerializable, ResponseCollectionSerializable {
         if let date = dateFormatter.date(from: releaseDate) {
             let calendar = Calendar.current
             year = "\(calendar.component(.year, from: date))"
-            
-            
         }
         
         return Film(title: title, year: year, overview: overview, pictureURL: "\(ConstantsURLs.TMDB.filmPicture)\(posterPath)")

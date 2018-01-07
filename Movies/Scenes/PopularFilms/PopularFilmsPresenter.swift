@@ -23,11 +23,25 @@ class PopularFilmsPresenter: PopularFilmsPresenterInput {
     func presentFilms(response: PopularFilmsScene.PopularFilmsList.Response) {
         let films = response.films
         var displayFilms:[PopularFilmsScene.PopularFilmsList.DisplayedFilm] = []
-        for film in films {
-            let displayFilm = PopularFilmsScene.PopularFilmsList.DisplayedFilm(title: film.title, year: film.year, overview: film.overview, pictureURL: film.pictureURL)
-            displayFilms.append(displayFilm)
+        
+        var tmdbError:PopularFilmsScene.PopularFilmsList.TmdbError!
+        
+        if let error = response.error {
+            switch error {
+            case .cannotGet(_):
+                tmdbError = PopularFilmsScene.PopularFilmsList.TmdbError(title: "Error", description: "Something went wrong, try later or restart the app.")
+            }
+            
         }
-        let viewModel = PopularFilmsScene.PopularFilmsList.ViewModel(displayFilms: displayFilms)
+        else {
+            for film in films {
+                let displayFilm = PopularFilmsScene.PopularFilmsList.DisplayedFilm(title: film.title, year: film.year, overview: film.overview, pictureURL: film.pictureURL)
+                displayFilms.append(displayFilm)
+            }
+        }
+        
+        let viewModel = PopularFilmsScene.PopularFilmsList.ViewModel(displayFilms: displayFilms, tmdbError: tmdbError)
         output?.displayFilms(viewModel: viewModel)
+        
     }
 }

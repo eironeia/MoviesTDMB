@@ -48,7 +48,7 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.0" green="0.24313725489999999" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" red="0.062745098039215685" green="0.098039215686274508" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="Xtr-Pr-aRp" firstAttribute="leading" secondItem="oOa-9L-GzM" secondAttribute="leading" constant="5" id="Bda-Vk-uvp"/>
                     <constraint firstItem="Xtr-Pr-aRp" firstAttribute="top" secondItem="oOa-9L-GzM" secondAttribute="top" constant="5" id="Cmb-A4-lCI"/>

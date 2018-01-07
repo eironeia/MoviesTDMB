@@ -20,11 +20,11 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X6V-I4-Nst">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                                <color key="backgroundColor" red="0.0" green="0.24313725489999999" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.062745098040000002" green="0.098039215690000001" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="2rc-gE-zrw">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <color key="barTintColor" red="0.0" green="0.24313725489999999" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="barTintColor" red="0.062745098039215685" green="0.098039215686274508" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
                                         <outlet property="delegate" destination="BYZ-38-t0r" id="4db-CD-VNu"/>
@@ -35,18 +35,24 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Hr1-rl-sWu"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="dws-IT-lws">
+                                <rect key="frame" x="177" y="291" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.24313725489999999" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.062745098040000002" green="0.098039215690000001" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="X6V-I4-Nst" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="8Bl-fh-wRh"/>
+                            <constraint firstItem="dws-IT-lws" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Wee-QV-5GR"/>
                             <constraint firstItem="X6V-I4-Nst" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ayf-9A-sAM"/>
                             <constraint firstItem="X6V-I4-Nst" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="pla-4G-EoX"/>
+                            <constraint firstItem="dws-IT-lws" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vLv-kO-Naj"/>
                             <constraint firstItem="X6V-I4-Nst" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xGe-Om-FvQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Popular films" id="7GU-E1-Ir1"/>
                     <connections>
+                        <outlet property="loaderIndicatorView" destination="dws-IT-lws" id="4wA-yE-I9q"/>
                         <outlet property="popularFilmsSearchBar" destination="2rc-gE-zrw" id="VTv-hR-1kE"/>
                         <outlet property="popularFilmsTableView" destination="X6V-I4-Nst" id="c69-Qq-5m5"/>
                     </connections>
@@ -58,17 +64,17 @@
         <!--Navigation Controller-->
         <scene sceneID="fkY-Vb-RXt">
             <objects>
-                <navigationController storyboardIdentifier="scrollingNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7cn-yP-yRf" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="scrollingNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" hidesBarsOnSwipe="YES" hidesBarsWhenKeyboardAppears="YES" id="7cn-yP-yRf" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="x02-MN-o2n">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="1" green="0.61076081940000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.95294117647058818" green="0.78823529411764703" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.0" green="0.12695327700007886" blue="0.29647881521319797" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="0.062745098040000002" green="0.098039215690000001" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" red="0.0" green="0.126953277" blue="0.29647881520000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>

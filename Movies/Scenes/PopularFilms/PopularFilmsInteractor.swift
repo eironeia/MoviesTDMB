@@ -34,10 +34,11 @@ class PopularFilmsInteractor: PopularFilmsInteractorInput, PopularFilmsDataSourc
         tmdbAPIStore.getPopularFilmsDesc(page: request.page) { (result) in
             switch result {
             case .success(result: let films):
-                let response = PopularFilmsScene.PopularFilmsList.Response(films: films)
+                let response = PopularFilmsScene.PopularFilmsList.Response(films: films, error: nil)
                 self.output?.presentFilms(response: response)
             case .failure(error: let error):
-                print(error)
+                let response = PopularFilmsScene.PopularFilmsList.Response(films: [], error: error)
+                self.output?.presentFilms(response: response)
             }
         }
     }
